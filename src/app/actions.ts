@@ -4,9 +4,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import prisma from "@/src/lib/prisma";
+import { ensureUserExists } from "@/src/lib/ensureUserExists";
 
 export async function createYarn(formData: FormData){
-    const { userId } = await auth();
+    const userId = await ensureUserExists();
 
     if (!userId){
         redirect("/sign-in");

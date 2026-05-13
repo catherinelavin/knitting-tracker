@@ -36,7 +36,7 @@ button,
   border: 1px solid var(--foreground);
   border-radius: 6px;
   background: var(--foreground);
-  color: var(--surface);
+  color: var(--background);
   cursor: pointer;
   display: inline-flex;
   padding: 0.6rem 0.9rem;
