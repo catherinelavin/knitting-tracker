@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import prisma from "@/src/lib/prisma";
 
 export async function createYarn(formData: FormData){
@@ -12,8 +12,8 @@ export async function createYarn(formData: FormData){
         redirect("/sign-in");
     }
 
-    const name = String(formData.get("Name") ?? "").trim();
-    const brand = String(formData.get("Brand") ?? "").trim();
+    const name = String(formData.get("name") ?? "").trim();
+    const brand = String(formData.get("brand") ?? "").trim();
 
     if (!name){
         throw new Error("Name is required");
@@ -28,4 +28,5 @@ export async function createYarn(formData: FormData){
     });
 
     revalidatePath("/");
+    redirect("/");
 }
