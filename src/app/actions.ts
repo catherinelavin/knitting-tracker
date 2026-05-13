@@ -34,11 +34,11 @@ export async function createYarn(formData: FormData){
         });
 
         console.log("YARN CREATED:", yarn);
-        revalidatePath("/");
-        redirect("/");
     }
     catch (error) {
         console.error("CREATE YARN FAILED:", error);
         throw error;
     }
+    revalidatePath("/");
+        redirect("/");
 }
