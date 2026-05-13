@@ -7,27 +7,38 @@ import prisma from "@/src/lib/prisma";
 import { ensureUserExists } from "@/src/lib/ensureUserExists";
 
 export async function createYarn(formData: FormData){
-    const userId = await ensureUserExists();
 
-    if (!userId){
-        redirect("/sign-in");
-    }
+    console.log("CREATE YARN ACTION STARTED");
 
-    const name = String(formData.get("name") ?? "").trim();
-    const brand = String(formData.get("brand") ?? "").trim();
+    try{
+        const userId = await ensureUserExists();
+        console.log("USER EXISTS:", userId);
 
-    if (!name){
-        throw new Error("Name is required");
-    }
-
-    await prisma.yarn.create({
-        data: {
-            name,
-            brand,
-            user: { connect: { id: userId}}
+        if (!userId){
+            redirect("/sign-in");
         }
-    });
 
-    revalidatePath("/");
-    redirect("/");
+        const name = String(formData.get("name") ?? "").trim();
+        const brand = String(formData.get("brand") ?? "").trim();
+
+        if (!name){
+            throw new Error("Name is required");
+        }
+
+        const yarn = await prisma.yarn.create({
+            data: {
+                name,
+                brand,
+                user: { connect: { id: userId}}
+            }
+        });
+
+        console.log("YARN CREATED:", yarn);
+        revalidatePath("/");
+        redirect("/");
+    }
+    catch (error) {
+        console.error("CREATE YARN FAILED:", error);
+        throw error;
+    }
 }

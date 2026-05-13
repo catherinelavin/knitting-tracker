@@ -8,7 +8,7 @@ export default async function CreateYarn(){
     if (!userId) {
         return (
             <div className="panel">
-                <h1>New Draft</h1>
+                <h1>Add a Yarn</h1>
                 <p>You need to be authenticated to add a yarn</p>
             </div>
         );
@@ -17,7 +17,7 @@ export default async function CreateYarn(){
     return (
         <div className="panel">
             <form action={createYarn} className="form">
-                <h1>New Draft</h1>
+                <h1>Add a Yarn</h1>
                 <label className="field">
                     <span>Name</span>
                     <input autoFocus name="name" placeholder="Name" required />
