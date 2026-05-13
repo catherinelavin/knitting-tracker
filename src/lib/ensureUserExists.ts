@@ -1,7 +1,7 @@
 import { auth, currentUser } from"@clerk/nextjs/server";
 import  prisma  from "@/src/lib/prisma";
 
-async function ensureUserExists(){
+export async function ensureUserExists(){
     const { userId } = await auth();
 
     if(!userId) {
