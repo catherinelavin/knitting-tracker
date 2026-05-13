@@ -1,28 +1,38 @@
-import Image from "next/image";
-import YarnCard, { type YarnCardData } from "@/src/components/yarn-card";
-import prisma from "@/src/lib/prisma";
+import Link from "next/link";
+import { createYarn } from "@/src/app/actions";
+import { auth } from "@clerk/nextjs/server";
 
-export const revalidate = 10;
+export default async function CreateYarn(){
+    const { userId } = await auth();
+    
+    if (!userId) {
+        return (
+            <div className="panel">
+                <h1>New Draft</h1>
+                <p>You need to be authenticated to add a yarn</p>
+            </div>
+        );
+    }
 
-export default async function FeedPage() {
-  const feed = await prisma.yarn.findMany({
-    include: {
-      user: {
-        select: { name: true},
-      },
-    },
-    orderBy: { id: "desc" },
-  });
-
-  return (
-    <div className="stack">
-      <h1>Yarn</h1>
-      {feed.length ? (
-        feed.map((yarn: YarnCardData) => <YarnCard key={yarn.id} yarn={yarn} />)
-      ) : (
-        <div className = "panel"> No published yarns yet. </div>
-      )}
-    </div>
-  )
-  
+    return (
+        <div className="panel">
+            <form action={createYarn} className="form">
+                <h1>New Draft</h1>
+                <label className="field">
+                    <span>Name</span>
+                    <input autoFocus name="name" placeholder="Name" required />
+                </label>
+                <label className="field">
+                    <span>Brand</span>
+                    <input name="brand" placeholder="Brand" />
+                </label>
+                <div className="actions">
+                    <button type="submit">Create</button>
+                    <Link className="button secondary" href="/">
+                        Cancel 
+                    </Link>
+                </div>
+            </form>
+        </div>
+    );
 }
