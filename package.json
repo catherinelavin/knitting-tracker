@@ -2,7 +2,7 @@
   "name": "knitting-tracker",
   "version": "0.1.0",
   "private": true,
-  "postinstall": "prisma generate && prisma db push"
+  "postinstall": "prisma generate && prisma db push",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
