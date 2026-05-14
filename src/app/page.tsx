@@ -16,7 +16,7 @@ export default async function CreateYarn(){
 
     return (
         <div className="panel">
-            <form action={createYarn} className="form">
+            <form action={createYarn} method="post" className="form">
                 <h1>Add a Yarn</h1>
                 <label className="field">
                     <span>Name</span>
