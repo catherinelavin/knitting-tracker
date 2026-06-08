@@ -1,9 +1,9 @@
-# Knitting Tracker
+# StitchTrack
 
 StitchTrack is a web application designed to help knitters organise their yarn stash and manage knitting projects. The current version focuses on yarn inventory management, with project tracking features planned for future development.
 
 ## Live Demo
-https://knitting-tracker-53y1lcqx1-cmarielavin-3945s-projects.vercel.app/
+🔗 https://knitting-tracker-53y1lcqx1-cmarielavin-3945s-projects.vercel.app/
 
 ## Features
 
@@ -56,7 +56,7 @@ https://knitting-tracker-53y1lcqx1-cmarielavin-3945s-projects.vercel.app/
 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/catherinelavin/knitting-tracker.git
 cd knitting-tracker
 ```
 
